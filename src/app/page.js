@@ -1,33 +1,28 @@
 import AnimeList from "@/components/AnimeList";
-
-import Link from "next/link";
+import Header from "@/components/AnimeList/Header";
 
 const Home = async () => {
   // on Default mode, if you didn't declare "use client" then this component will be server component
 
   // Calling API server Component
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`);
-  const anime = await response.json();
+  const topAnime = await response.json();
+
+  const response2 = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=4`);
+  const recommendedAnime = await response2.json();
 
   return (
-    <div>
-      <div className="p-4 flex justify-between items-center">
-        <h1 className="font-bold text-2xl">Most Popular</h1>
-        <Link href="/popular" className="md:text-xl text-sm underline hover:text-indigo-500 transition-all">
-          See more
-        </Link>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 sm:grid-cols-3 gap-4 px-4">
-        {anime.data.map((data) => {
-          /* data.mal_id is used for each anime show id */
-          return (
-            <div key={data.mal_id} className="shadow-xl">
-              <AnimeList title={data.title} images={data.images.jpg.image_url} id={data.mal_id} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <>
+      <section>
+        <Header title="Most Popular" linkHref="/popular" linkTitle="See more" />
+        <AnimeList api={topAnime} />
+      </section>
+
+      <section>
+        <Header title="Top Picks For You" linkHref="/recommendation" linkTitle="See more" />
+        <AnimeList api={recommendedAnime} />
+      </section>
+    </>
   );
 };
 
