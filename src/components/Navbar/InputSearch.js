@@ -11,27 +11,20 @@ const InputSearch = () => {
 
   //   Handle search button
   const handleSearch = (event) => {
-    // Prevent default
-    event.preventDefault();
-    const keyword = searchRef.current.value;
+    // Challenge - SESI_2
+    // Handle enter button and click button to search
+    if (event.key === "Enter" || event.type === "click") {
+      // Prevent default
+      event.preventDefault();
 
-    router.push(`/search/${keyword}`);
-  };
-
-  // Challenge - SESI_2
-  // Handle enter button to search
-  const handleEnter = (event) => {
-    // If user press enter
-    if (event.key === "Enter") {
       const keyword = searchRef.current.value;
-
       router.push(`/search/${keyword}`);
     }
   };
 
   return (
     <div className="relative">
-      <input type="text" placeholder="Title, genres" className="w-full p-2 rounded-md px-10 border focus:outline-none" ref={searchRef} onKeyDown={handleEnter} />
+      <input type="text" placeholder="Title, genres" className="w-full p-2 rounded-md px-10 border focus:outline-none" ref={searchRef} onKeyDown={handleSearch} />
       {/* Search Button */}
       <button className="absolute top-2 start-2" onClick={handleSearch}>
         <MagnifyingGlass size={24} />

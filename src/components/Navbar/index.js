@@ -3,10 +3,10 @@ import InputSearch from "./InputSearch";
 
 const NavBar = () => {
   return (
-    <header className="bg-sky-500 sticky top-0">
-      <div className="flex md:flex-row flex-col items-center justify-between p-4 gap-2">
+    <header className="bg-color-accent sticky top-0">
+      <div className="flex flex-col justify-between p-4 gap-2 md:items-center md:flex-row ">
         <Link href={"/"} className="text-white font-bold text-2xl">
-          Anime Streaming
+          Anime List
         </Link>
 
         {/* Input Search Component */}
