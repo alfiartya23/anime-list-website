@@ -18,7 +18,13 @@ const InputSearch = () => {
       event.preventDefault();
 
       const keyword = searchRef.current.value;
-      router.push(`/search/${keyword}`);
+      // Challenge - SESI_3
+      // If input search is empty then do nothing
+      if (keyword === "") {
+        return;
+      } else {
+        router.push(`/search/${keyword}`);
+      }
     }
   };
 
